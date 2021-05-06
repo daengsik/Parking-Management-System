@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<style type="text/css">
+    table {
+        border: 2px solid #000;
+        border-collapse: collapse;
+        height: 300px;
+    }
+
+    td {
+        width: 100px;
+    }
+
+    .main_ {
+        border: 1px solid #000;
+        height: 515px;
+    }
+
+    .main {
+        width: 100%;
+        text-align: center;
+    }
+
+    .first {
+        float: left;
+        box-sizing: border-box;
+    }
+
+    .second {
+        display: inline-block;
+        box-sizing: border-box;
+    }
+
+    .third {
+        float: right;
+        box-sizing: border-box;
+    }
+
+    .down {
+        width: 100%;
+    }
+
+    .arrow {
+        float: left;
+
+    }
+
+    .office {
+        text-align: center;
+        line-height: 100px;
+        float: right;
+        border: 2px solid #000F;
+        background-color: #c3c4c7;
+        width: 150px;
+        height: 100px;
+    }
+
+    .red {
+        /* float: left; */
+        margin-right: 10px;
+        width: 35px;
+        height: 35px;
+        background-color: red;
+    }
+
+    .blue {
+        /* float: left; */
+        margin-right: 10px;
+        width: 35px;
+        height: 35px;
+        background-color: blue;
+    }
+</style>
+
+<html>
+
+<head>
+    <title>A 주차장</title>
+</head>
+
+<body>
+    <h1>A 주차장 주차현황</h1>
+    <h3>주차장 이동</h3>
+    <h3>
+       <select onchange="window.open(value,'_self');">
+                <option>------------</option>
+        <option value="A주차장.html">A주차장</option>
+        <option value="B주차장.html">B주차장</option>
+        <option value="C주차장.html">C주차장</option>
+       </select>
+    </h3>
+    <div class="main_">
+        <div class="main">
+            <div class="first">
+                <table border="2" width="150px">
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="second">
+                <table border="2" width="300px">
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="third">
+                <table border="2" width="150px">
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="down">
+            <div class="arrow">
+                <img src="arrow1.png" width="130px" height="100px">
+            </div>
+            <div class="office">
+                관리실
+            </div>
+        </div>
+    </div>
+    <div width="150px">
+        <br>
+        <div class="red" align="left">
+
+        </div>
+        <div>
+            주차불가
+        </div>
+        <div class="blue" align="left">
+
+        </div>
+        <div>
+            주차가능
+        </div>
+    </div>
+</body>
+
+</html>
