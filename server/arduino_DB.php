@@ -3,10 +3,13 @@
 	$user = 'root';
 	$pass = 'root';
 	$DB = 'Parking_Manager';
-
+	
+	$sector = $_GET["sector"];
 	$No = $_GET["No"];
 	$stat = $_GET["stat"];
+	//GET 파라미터 저장
 	$con = mysqli_connect($host, $user, $pass, $DB);
+	//DB연결
 	$sql = "SELECT * FROM parking WHERE No=$No";
 	function get_client_ip() {
     		$ipaddress = '';
@@ -25,23 +28,23 @@
     		else
         		$ipaddress = 'UNKNOWN';
     		return $ipaddress;
-	}
+	} //클라이언트 IP
 	$addr = ['192.168.0.33'];
-	if(mysqli_fetch_row(mysqli_query($con, $sql))){
-		if($stat == 1){
-			$sql = "UPDATE parking SET stat=$stat, Stime=curtime() WHERE No=$No";
-			mysqli_query($con, $sql);
+	if(mysqli_fetch_row(mysqli_query($con, $sql)) && get_client_ip() == $addr[0]){ //레코드 개수and IP검사
+		if($stat == 1){ //stat이 1일때
+			$sql = "UPDATE parking SET sector=$sector, stat=$stat, Stime=curtime() WHERE No=$No";
+			mysqli_query($con, $sql); //쿼리실행
 			mysqli_query($con, "commit;");
 		}
 		else{
-			$sql = "UPDATE parking SET stat=$stat, Etime=curtime() WHERE No=$No";
+			$sql = "UPDATE parking SET sector=$sector, stat=$stat, Etime=curtime() WHERE No=$No";
 			mysqli_query($con, $sql);
 			mysqli_query($con, "commit;");
 		}
 	}
-	else{
-		$sql = "INSERT INTO parking(No, stat, Stime) VALUES($No, $stat, 'curtime()')";
-		mysqli_query($con, $sql);
+	else if(get_client_ip() == $addr[0]){
+		$sql = "INSERT INTO parking(sector, No, stat, Stime) VALUES($sector, $No, $stat, curtime())";
+		mysqli_query($con, $sql); //쿼리실행
 		mysqli_query($con, "commit;");
 	}
 ?>

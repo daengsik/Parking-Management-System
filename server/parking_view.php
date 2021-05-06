@@ -4,22 +4,26 @@
 	$pass = 'root';
 	$DB = 'Parking_Manager';
 
-	$con = mysqli_connect($host, $user, $pass, $DB);
+	$con = mysqli_connect($host, $user, $pass, $DB); //DB연결
 
 	if(mysqli_connect_errno())
-		die('Connect Error: '.mysqli_connect_error());
+		die('Connect Error: '.mysqli_connect_error()); //DB연결 실패시 오류출력
 
-	$sql = 'SELECT COUNT(*) FROM parking';
+	$sql = 'SELECT COUNT(*) FROM parking'; //레코드 수 출력
 	$temp = mysqli_query($con, $sql);
 	$max = mysqli_fetch_array($temp)[0];
 
- 	$sql = 'SELECT * FROM parking';
+ 	$sql = 'SELECT * FROM parking'; //레코드 출력
 	$result = mysqli_query($con, $sql);
 	$i = 0;
 	while($park_arr = mysqli_fetch_assoc($result)){
-		$park_stat[$i] = $park_arr['stat'];
+		$No[$i] = $park_arr['No']; //No 레코드 배열
+		$park_sector[$i] = $park_arr['sector']; //sector 레코드 배열
+		$park_stat[$i] = $park_arr['stat']; //stat 레코드 베열
 		$i++;
 	}
+	$jNo = json_encode($No, JSON_NUMERIC_CHECK); //자바스크립트로 배열 보내기 json 형식
+	$jsector = json_encode($park_sector); 
 	$jstat = json_encode($park_stat, JSON_NUMERIC_CHECK);
 	header('Refresh:2;');
 ?>
@@ -222,14 +226,16 @@
     </div>
 	<script>
 	function A(){
-		var arr = <?=$jstat ?>;
-		var name = "A";
-		var len = arr.length;
-		for(var i=0; i<=len-1; i++){
-			if(arr[i] == 1)
-				document.getElementById(name+(i+1)).style.backgroundColor = 'red';
+		var No = <?=$jNo ?>; 
+		var sector = <?=$jsector ?>;
+		var stat = <?=$jstat ?>;
+		//json 받기
+		var len = No.length; //No배열 길이
+		for(var i=0; i<=len-1; i++){ //len길이만큼 반복
+			if(stat[i] == 1)
+				document.getElementById(sector[i]+No[i]).style.backgroundColor = 'red'; //주차중
 			else
-				document.getElementById(name+(i+1)).style.backgroundColor = 'green';
+				document.getElementById(sector[i]+No[i]).style.backgroundColor = 'green'; //빈자리
 		}
 	}
 	A();
