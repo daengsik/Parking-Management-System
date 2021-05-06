@@ -1,0 +1,7 @@
+create table parking(
+sector varchar(10),
+No int primary key,
+stat boolean not null,
+Stime time,
+Etime time
+);
